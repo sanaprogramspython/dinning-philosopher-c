@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#111a18">
+    <title>Normal Mode | Dining Philosophers</title>
+    <link rel="stylesheet" href="normal.css">
+    <script src="normal.js" defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <a class="wordmark" href="index.html"><span class="wordmark-mark">DP</span> OS LAB <span class="wordmark-divider">/</span> NORMAL MODE</a>
+        <nav aria-label="Project pages"><a href="index.html">Home</a><a class="active" href="normal.html" aria-current="page">Normal Mode</a><a href="game.html">Game Mode</a></nav>
+    </header>
+    <main class="page-shell">
+        <section class="page-intro">
+            <p class="eyebrow">OPERATING SYSTEMS / SYNCHRONIZATION</p>
+            <h1>Normal Mode</h1>
+            <p>Observe concurrent resource requests and compare four ways to prevent circular wait.</p>
+        </section>
+
+        <section class="controls" aria-label="Simulation controls">
+            <label>Philosophers
+                <input id="philosopher-count" type="number" min="2" max="10" value="5">
+            </label>
+            <label>Resource strategy
+                <select id="strategy-select">
+                    <option value="unsafe">Naive: left first</option>
+                    <option value="limit">Limit contenders to N - 1</option>
+                    <option value="ordering">Resource ordering</option>
+                    <option value="waiter">Arbitrator / waiter</option>
+                    <option value="asymmetric">Asymmetric acquisition</option>
+                </select>
+            </label>
+            <div class="control-buttons">
+                <button id="start-button" class="button primary" type="button">Start Simulation</button>
+                <button id="pause-button" class="button secondary" type="button">Pause</button>
+                <button id="reset-button" class="button quiet" type="button">Reset</button>
+            </div>
+        </section>
+
+        <section class="simulation-grid">
+            <div class="simulation-panel">
+                <div class="panel-heading">
+                    <div><p class="eyebrow">LIVE TABLE</p><h2>Resource allocation</h2></div>
+                    <span id="simulation-status" class="status-pill">READY</span>
+                </div>
+                <div class="metrics" aria-live="polite">
+                    <span>Eating <strong id="eating-count">0</strong></span>
+                    <span>Waiting <strong id="waiting-count">0</strong></span>
+                    <span>Free <strong id="free-count">5</strong></span>
+                    <span id="deadlock-status">No deadlock</span>
+                </div>
+                <div id="table" class="table" aria-label="Circular dining table">
+                    <div id="philosophers"></div>
+                    <div id="chopsticks"></div>
+                    <div class="table-center"><strong>SHARED TABLE</strong><span id="center-note">N threads / N chopsticks</span></div>
+                </div>
+                <p class="table-caption">Each philosopher shares one chopstick with each neighbor.</p>
+            </div>
+
+            <aside class="explanation-panel" aria-live="polite">
+                <p class="eyebrow">WHAT IS HAPPENING</p>
+                <h2 id="explanation-title">Ready to simulate</h2>
+                <p id="explanation-text">Start the simulation to see philosophers request their neighboring chopsticks. Change the strategy to compare how the allocation changes.</p>
+                <div class="cycle-callout"><strong>Deadlock requires</strong><span>Mutual exclusion + hold and wait + no preemption + circular wait.</span></div>
+            </aside>
+        </section>
+
+        <section class="solutions" aria-labelledby="solutions-title">
+            <div class="section-heading"><div><p class="eyebrow">PREVENTION STRATEGIES</p><h2 id="solutions-title">Break at least one deadlock condition.</h2></div><p>Select a strategy above to watch its allocation rule in action.</p></div>
+            <div class="solution-grid">
+                <article><span>01</span><h3>N - 1 contenders</h3><p>Limit the number of philosophers holding chopsticks to one fewer than the number at the table.</p></article>
+                <article><span>02</span><h3>Resource ordering</h3><p>Always request the lower-numbered chopstick before the higher-numbered one. Circular wait cannot form.</p></article>
+                <article><span>03</span><h3>Arbitrator / waiter</h3><p>A central waiter grants both chopsticks together only when both are available.</p></article>
+                <article><span>04</span><h3>Asymmetric acquisition</h3><p>Alternate acquisition order between philosophers so they do not all hold the same side first.</p></article>
+            </div>
+        </section>
+        <footer class="page-footer"><a href="index.html">&larr; Project home</a><a href="game.html">Try Game Mode &rarr;</a></footer>
+    </main>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#111a18">
+    <title>Dining Philosophers | OS Lab</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <a class="wordmark" href="index.html"><span class="wordmark-mark">DP</span> OS LAB <span class="wordmark-divider">/</span> SYNCHRONIZATION</a>
+        <span class="header-note">OPERATING SYSTEMS PROJECT</span>
+    </header>
+
+    <main>
+        <section class="intro">
+            <div class="intro-copy">
+                <p class="eyebrow">A CLASSIC CONCURRENCY PROBLEM</p>
+                <h1>Dining<br>Philosophers</h1>
+                <p class="intro-text">Five philosophers share a table and a limited set of chopsticks. Each needs two to eat. The challenge is coordinating access so nobody waits forever and the system never deadlocks.</p>
+                <a class="text-link" href="normal.html">Explore the problem <span aria-hidden="true">&#8594;</span></a>
+            </div>
+            <div class="table-illustration" aria-label="A diagram of philosophers arranged around shared chopsticks">
+                <div class="table-ring"></div>
+                <span class="diagram-seat seat-a">P1</span>
+                <span class="diagram-seat seat-b">P2</span>
+                <span class="diagram-seat seat-c">P3</span>
+                <span class="diagram-seat seat-d">P4</span>
+                <span class="diagram-seat seat-e">P5</span>
+                <span class="diagram-fork fork-a">C</span>
+                <span class="diagram-fork fork-b">C</span>
+                <span class="diagram-fork fork-c">C</span>
+                <span class="diagram-fork fork-d">C</span>
+                <span class="diagram-fork fork-e">C</span>
+                <div class="diagram-center"><span>SHARED<br>RESOURCES</span></div>
+                <span class="diagram-caption">MUTUAL EXCLUSION / CIRCULAR WAIT</span>
+            </div>
+        </section>
+
+        <section class="mode-section" aria-labelledby="mode-heading">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">CHOOSE A MODE</p>
+                    <h2 id="mode-heading">Study it, then try it.</h2>
+                </div>
+                <p>Two ways to explore resource allocation, synchronization, and deadlock prevention.</p>
+            </div>
+            <div class="mode-grid">
+                <a class="mode-card" href="normal.html">
+                    <span class="mode-index">01 / CONCEPTS</span>
+                    <span class="mode-icon" aria-hidden="true">N</span>
+                    <h3>Normal Mode</h3>
+                    <p>Watch the classic problem unfold. Switch between deadlock-prone behavior and four coordination strategies.</p>
+                    <span class="mode-action">Open simulation <span aria-hidden="true">&#8594;</span></span>
+                </a>
+                <a class="mode-card game-card" href="game.html">
+                    <span class="mode-index">02 / CHALLENGE</span>
+                    <span class="mode-icon" aria-hidden="true">G</span>
+                    <h3>Game Mode</h3>
+                    <p>Take control of the table. Assign chopsticks by hand, feed every philosopher, and avoid conflicts.</p>
+                    <span class="mode-action">Play the game <span aria-hidden="true">&#8594;</span></span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer"><span>DINING PHILOSOPHERS PROBLEM</span><span>THREADS / LOCKS / PROGRESS</span></footer>
+</body>
+</html>

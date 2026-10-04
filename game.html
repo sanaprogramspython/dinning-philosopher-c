@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#111a18">
+    <title>Game Mode | Dining Philosophers</title>
+    <link rel="stylesheet" href="game.css">
+    <script src="game.js" defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <a class="wordmark" href="index.html"><span class="wordmark-mark">DP</span> OS LAB <span class="wordmark-divider">/</span> GAME MODE</a>
+        <nav aria-label="Project pages"><a href="index.html">Home</a><a href="normal.html">Normal Mode</a><a class="active" href="game.html" aria-current="page">Game Mode</a></nav>
+    </header>
+    <main class="page-shell">
+        <section class="page-intro">
+            <p class="eyebrow">RESOURCE ALLOCATION / PLAYER CHALLENGE</p>
+            <h1>Game Mode</h1>
+            <p>Keep philosopher health up and manage their chopsticks by hand. The round ends only when a philosopher starves.</p>
+        </section>
+
+        <section class="controls" aria-label="Game setup and controls">
+            <label>Philosophers
+                <input id="philosopher-count" type="number" min="2" max="10" value="5">
+            </label>
+            <div class="control-buttons">
+                <button id="start-button" class="button primary" type="button">Start Game</button>
+                <button id="pause-button" class="button secondary" type="button">Pause</button>
+                <button id="reset-button" class="button quiet" type="button">Reset Game</button>
+                <button id="new-game-button" class="button quiet" type="button">New Game</button>
+            </div>
+        </section>
+
+        <section class="game-layout">
+            <div class="game-panel">
+                <div class="panel-heading">
+                    <div><p class="eyebrow">LIVE ROUND</p><h2>Allocate the table</h2></div>
+                    <span id="game-status" class="status-pill">READY</span>
+                </div>
+                <div class="metrics" aria-live="polite">
+                    <span>Score <strong id="score">0</strong></span>
+                    <span>Elapsed <strong id="time-left">0</strong>s</span>
+                    <span>Fed <strong id="fed-count">0</strong></span>
+                    <span>Conflicts <strong id="conflict-count">0</strong></span>
+                    <span>Free <strong id="free-count">5</strong></span>
+                    <span id="deadlock-indicator">No deadlock</span>
+                </div>
+                <div id="table" class="table" aria-label="Interactive circular dining table">
+                    <div id="philosophers"></div>
+                    <div id="chopsticks"></div>
+                    <div class="table-center"><strong>SHARED TABLE</strong><span id="center-note">5 threads / 5 chopsticks</span></div>
+                </div>
+                <section class="player-controls" aria-label="Selected philosopher actions">
+                    <div class="player-controls-heading"><div><p class="eyebrow">YOUR NEXT MOVE</p><h2 id="selected-label">Philosopher 1</h2></div><span id="selected-state">Thinking</span></div>
+                    <div class="action-buttons">
+                        <button id="make-hungry-button" class="button secondary" type="button">Make Hungry</button>
+                        <button id="take-both-button" class="button resource" type="button">Take Both Chopsticks</button>
+                        <button id="take-left-button" class="button resource" type="button">Take Left Chopstick</button>
+                        <button id="take-right-button" class="button resource" type="button">Take Right Chopstick</button>
+                    </div>
+                </section>
+                <p id="game-message" class="game-message" role="status" aria-live="polite">Start the game, select a philosopher, and choose their resources.</p>
+            </div>
+
+            <aside class="side-panel">
+                <section class="roster-section">
+                    <p class="eyebrow">THREAD STATES</p>
+                    <h2>Table roster</h2>
+                    <div id="roster" class="roster"></div>
+                </section>
+                <section class="rules-section">
+                    <p class="eyebrow">SCORING</p>
+                    <h2>Think before you assign.</h2>
+                    <ul>
+                        <li>Complete an eating turn: <strong>+100</strong></li>
+                        <li>Survive each second: <strong>+1</strong></li>
+                        <li>Conflicting or invalid request: <strong>-10</strong></li>
+                        <li>Deadlock: <strong>-30</strong></li>
+                    </ul>
+                    <p>Thinking drains health slowly; hunger and waiting drain it faster. Eating restores health while both chopsticks stay held. Click an eating philosopher again to release both and finish the meal. During play, click a thinking philosopher to request both adjacent chopsticks at once. If either is occupied, no remote chopstick is taken. You can also request one hand at a time.</p>
+                </section>
+            </aside>
+        </section>
+
+        <section id="result-panel" class="result-panel" hidden aria-live="polite">
+            <p class="eyebrow">ROUND SUMMARY</p>
+            <h2 id="result-title">Game over</h2>
+            <p id="result-feedback"></p>
+            <div class="result-stats"><span>Score <strong id="result-score">0</strong></span><span>Philosophers fed <strong id="result-fed">0</strong></span><span>Deadlock occurred <strong id="result-deadlock">No</strong></span><span>Conflicts <strong id="result-conflicts">0</strong></span></div>
+            <button id="result-new-game-button" class="button primary" type="button">Play Again</button>
+        </section>
+        <footer class="page-footer"><a href="index.html">&larr; Project home</a><a href="normal.html">Study Normal Mode &rarr;</a></footer>
+    </main>
+</body>
+</html>
